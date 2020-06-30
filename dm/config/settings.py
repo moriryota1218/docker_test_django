@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'account.apps.AccountConfig',
-    'mail_sending.apps.MailConfig',
+    'mail_sending.apps.MailSendingConfig',
     'registration.apps.RegistrationConfig',
     'django.contrib.admin',
     'django.contrib.auth',
