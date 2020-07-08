@@ -14,7 +14,7 @@ ENV PYTHONUNBUFFERED 1
 RUN apk update \
     && apk add --virtual build-deps gcc python3-dev musl-dev \
     && apk add postgresql-dev \
-    && pip install psycopg2 \
+    && pip install psycopg2-binary \
     && apk del build-deps
 
 # Pipenvをインストール
@@ -28,10 +28,10 @@ COPY ./Pipfile /usr/src/dm/Pipfile
 RUN pipenv install --skip-lock --system --dev
 
 # entrypoint.shをコピー
-COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
+COPY ./entrypoint.sh /usr/src/dm/entrypoint.sh
 
 # ホストのカレントディレクトリ（現在はappディレクトリ）を作業ディレクトリにコピー
 COPY . /usr/src/dm/
 
 # entrypoint.shを実行
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+ENTRYPOINT ["/usr/src/dm/entrypoint.sh"]
